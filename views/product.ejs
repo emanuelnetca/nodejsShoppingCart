@@ -1,0 +1,46 @@
+<div class="productscreen">
+    <div class="productscreen_left">
+        <div class="left_image">
+            <img src="<%= product.image %>" alt="<%= product.name %>">
+        </div>
+
+        <div class="left_info">
+            <p class="left_name"><%= product.name %></p>
+            <p class="left_price"><strong>Price:</strong> $<%= product.price %></p>
+            <p class="left_description"><strong>Description:</strong> <%= product.description %></p>
+        </div>
+    </div>
+    <div class="productscreen_right">
+        <div class="right_info">
+            <form method="post" action="/add-to-cart">
+                <input type="text" name="product_id" value="<%= product._id %>" hidden>
+                <p>
+                    Price: <span>$<%= product.price %></span>
+                </p>
+                <p>
+                    Status:
+                    <% if (product.countInStock == 0) { %>
+                        <span>Out Of Stock</span>
+                    <% } else { %>
+                        <span>In Stock</span>
+                    <% } %>
+                </p>
+                <p>
+                    Qty
+                    <select name="select">
+                        <% if (product.countInStock == 0) { %>
+                            <option value="0">OUT OF STOCK</option>
+                        <% } else { %>
+                            <% for(let i = 0; i < product.countInStock; ++i) { %>
+                                <option value="<%= i+1 %>"><%= i+1 %></option>
+                            <% } %>
+                        <% } %>
+                    </select>
+                </p>
+                <p>
+                    <button type="submit">Add To Cart</button>
+                </p>
+            </form>
+        </div>
+    </div>
+</div>

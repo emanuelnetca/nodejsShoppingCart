@@ -1,0 +1,13 @@
+<div class="products">
+    <% for(let i = 0; i < products.length; ++i) { %>
+        <div class="product">
+            <img src="<%= products[i].image %>" alt="<%= products[i].name %>">
+            <div class="product_info">
+                <p class="info_name"><%= products[i].name %></p>
+                <p class="info_description"><%= products[i].description.substring(0, 80) %>...</p>
+                <p class="info_price">$<%= products[i].price %></p>
+                <a href="/product/<%= products[i]._id %>" class="info_button">View</a>
+            </div>
+        </div>
+    <% } %>
+</div>
